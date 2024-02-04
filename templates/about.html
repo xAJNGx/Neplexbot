@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <title>About NepLexBot</title>
+</head>
+<body>
+<nav class="navbar">
+    <div class="logo">
+      <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+    </div>
+
+
+    <ul class="nav-links">
+      <input type="checkbox" id="checkbox_toggle" />
+      <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+      <div class="menu">
+
+        <li><a href="{{ url_for('home') }}">HOME</a></li>
+        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+        {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('chatbot') }}">CHATBOT</a></li>
+        {% else %}
+           <li><a href="{{ url_for('login') }}">CHATBOT</a></li>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Login/Register</a></li>
+        {% endif %}
+      </div>
+    </ul>
+  </nav>
+<img src="{{ url_for('static', filename='image/moon.png') }}" alt="" onclick="myFunction()" height="50px" style="position: absolute; top: 15%; left:5%">
+
+    <h1>About</h1>
+    <div class="about_content">
+        <div class="desc">
+            <p>
+                A Constitution Chatbot(NepLexBot) is an interactive and intelligent computer program designed to assist users in
+                understanding and navigating information related to a constitution. It leverages natural language processing
+                and artificial intelligence to engage in conversations, answer queries, and provide information about constitutional
+                principles, laws, and related topics.
+            </p>
+            <p>
+                The chatbot is equipped to retrieve specific information
+                from the constitution based on user queries.
+                It can provide details about articles, legal concepts, rights, duties, and more
+                The chatbot may assist users in formulating legal queries and guide them on potential courses of action,
+                acting as an initial point of contact for legal inquiries.
+                Incorporating the chatbot into educational platforms can enhance students' understanding of constitutional law and related subjects.
+                Government agencies can implement a constitution chatbot to provide information to the public about legislative changes, government
+                structures, and legal procedures.
+                Law students and legal professionals may use the chatbot as a supplementary tool for research, quick reference, and clarification of legal concepts.
+                Citizens can use the chatbot to gain a better understanding of their constitutional rights, responsibilities, and the legal framework of their country.
+            </p>
+        </div>
+        <div class="image">
+            <img src="{{ url_for('static', filename='image/bots.webp') }}" alt="image" height="300px" width="450px">
+          </div>
+    </div>
+<section id="FAQ">
+    <div class="faq-header">Frequently Asked Questions(FAQ)</div>
+
+    <div class="faq-content">
+      <div class="faq-question">
+        <input id="q1" type="checkbox" class="panel">
+        <div class="plus">+</div>
+        <label for="q1" class="panel-title">Q: What is the purpose of the constitution chatbot for Nepal?</label>
+        <div class="panel-content">A: The constitution chatbot for Nepal is designed to provide information and answer questions related to the constitution of Nepal. It aims to assist users in understanding various aspects of the constitution and related legal matters.</div>
+      </div>
+
+      <div class="faq-question">
+        <input id="q2" type="checkbox" class="panel">
+        <div class="plus">+</div>
+        <label for="q2" class="panel-title">Q: How can the chatbot help me with constitutional information?</label>
+        <div class="panel-content">A: The chatbot can provide information on topics such as constitutional principles, rights, duties, government structure, and more. It can answer specific queries you may have about the constitution of Nepal.</div>
+      </div>
+
+      <div class="faq-question">
+        <input id="q3" type="checkbox" class="panel">
+        <div class="plus">+</div>
+        <label for="q3" class="panel-title">Q: What kind of questions can I ask the chatbot?</label>
+        <div class="panel-content">A: You can ask the chatbot questions related to constitutional provisions, legal rights, government structure, and any other topics covered by the constitution of Nepal. Feel free to seek information on specific articles or legal concepts.</div>
+      </div>
+
+      <div class="faq-question">
+        <input id="q4" type="checkbox" class="panel">
+        <div class="plus">+</div>
+        <label for="q4" class="panel-title">Q: Can the chatbot provide information on specific articles of the constitution?</label>
+        <div class="panel-content">A: Yes, the chatbot is equipped to provide information on specific articles of the constitution of Nepal. You can ask for details about a particular article, and the chatbot will provide relevant information.</div>
+      </div>
+
+      <div class="faq-question">
+        <input id="q5" type="checkbox" class="panel">
+        <div class="plus">+</div>
+        <label for="q5" class="panel-title">Q: Can the chatbot assist with legal terminology and language understanding?</label>
+        <div class="panel-content">A: Yes, the chatbot is equipped to understand legal terminology and language. It can help explain legal concepts in a more accessible way and assist you in understanding the language used in the constitution.</div>
+      </div>
+      <div class="faq-question">
+        <input id="q6" type="checkbox" class="panel">
+        <div class="plus">+</div>
+        <label for="q6" class="panel-title">Q: Is there a cost associated with using the constitution chatbot?</label>
+        <div class="panel-content">A: No, using the constitution chatbot for Nepal is typically free of charge. We aim to make legal information more accessible to the public. However, standard data charges may apply based on your internet connection.</div>
+      </div>
+    </div>
+  </section>
+ <footer>
+    <div class="footer">
+
+    <div class="row">
+    <ul>
+      <li><a href=""><img src="{{ url_for('static', filename='image/logo.png') }}" alt="" height="100px" width="140px"></a></li>
+
+      <li id="contact-us">Contact us>
+       <div id="socials">
+          <i class="fa fa-envelope">
+            <p>neplexbot2024@gmail.com</p>
+          </i>
+
+          <i class="fa fa-phone">
+            <p>01-4390786</p>
+          </i>
+        </div>
+      </li>
+      </ul>
+    </div>
+
+    <div class="row">
+    NepLexBot Copyright © 2024 NepLexBot - All rights reserved
+    </div>
+    </div>
+    </footer>
+</body>
+<script>
+  function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
+</html>

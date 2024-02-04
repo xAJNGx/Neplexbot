@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link rel="icon" type="image/png" href="./image/logo.png"/>
+  <!-- FontAwesome CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <title>NeplexBot</title>
+</head>
+<style>
+
+</style>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='image/logo.png') }}"></a>
+    </div>
+
+
+    <ul class="nav-links">
+      <input type="checkbox" id="checkbox_toggle" />
+      <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+      <div class="menu">
+
+        <li><a href="{{ url_for('home') }}">HOME</a></li>
+        <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+        {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('chatbot') }}">CHATBOT</a></li>
+        {% else %}
+           <li><a href="{{ url_for('login') }}">CHATBOT</a></li>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('logout') }}">LOGOUT</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Login/Register</a></li>
+        {% endif %}
+      </div>
+    </ul>
+  </nav>
+  <img src="{{ url_for('static', filename='image/moon.png') }}" alt="" onclick="myFunction()" height="50px" style="position: absolute; top: 15%; left:5%">
+  <section id="home">
+    <div class="main_content">
+      
+      <h1 data-text="NepLexBot">
+      NepLexBot
+      </h1>
+      <p>A chatbot that can help you with your queries related to the nepal constitution.</p>
+      {% if current_user.is_authenticated %}
+            <a href="{{ url_for('chatbot') }}"><button id="button">chat with us</button></a>
+        {% else %}
+            <a href="{{ url_for('login') }}"><button id="button">chat with us</button></a>
+        {% endif %}
+    </div>
+  </section>
+
+  <section id="about">
+    <h1 style="font-size: 42px;">About ChatBot</h1>
+      <div class="about_content">
+        <div class="desc">
+          <h2>What is NepLexBot?</h2>
+          <p>
+           A Constitution Chatbot(NepLexBot) is an interactive and intelligent computer program designed to assist users
+            in understanding and navigating information related to a constitution. It leverages natural language
+            processing and artificial intelligence to engage in conversations, answer queries, and provide information
+            about constitutional principles, laws, and related topics.
+          </p>
+           <a href="{{ url_for('about') }}"> <button id="more"><span>Learn more</span></button></a>
+        </div>
+        <div class="image">
+          <img src="{{ url_for('static', filename='image/bots.webp') }}" alt="image" height="300px" width="450px">
+        </div>
+      </div>
+     
+  </section>
+
+  <section id="features1">
+    
+      <h1 style="font-size: 42px;">Features</h1>
+    <div class="features_container">
+        <div class="demo">
+            <video src="{{ url_for('static', filename='video/demo.mov') }}" controls autoplay muted height="500px" width="750px"></video>
+        </div>
+
+         <div class="flip-card" tabIndex="0">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+
+              <h3>NepLexBot</h3>
+            </div>
+            <div class="flip-card-back">
+              {% if current_user.is_authenticated %}
+              <a href="{{ url_for('chatbot') }}"><h3>Try NEPLEXBOT</h3></a>
+              {% else %}
+                  <a href="{{ url_for('login') }}"><h3>Try NEPLEXBOT</h3></a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+   
+<section id="queries">
+
+      <div class="faq-content">
+        <div class="faq-question">
+          <input id="q1" type="checkbox" class="panel">
+          <label for="q1" class="panel-title">Areas Neplxebot can help you with:
+          </label>
+          <div class="panel-content">
+            <ol type="1">
+              <li>Sovereignty and Autonomy
+                <ul type="circle">
+                  <li>People's sovereign right</li>
+                    <li>Right to autonomy</li>
+                   <li> Democratic Governance</li>
+                </ul>
+              </li>
+
+              <li>Multi-party democracy
+                <ul type="circle">
+                  <li>Civil liberties, human rights</li>
+                    <li>Periodic elections, press freedom</li>
+                   <li> Social Justice</li>
+                </ul>
+              </li>
+
+              <li>Just society
+                <ul type="circle">
+                  <li>Social and cultural solidarity</li>
+                    <li>Right to autonomy</li>
+                   <li> Democratic Governance</li>
+                </ul>
+              </li>
+
+              <li>Sovereignty and Autonomy
+                <ul type="circle">
+                  <li>People's sovereign right</li>
+                    <li>Unity in diversity</li>
+                   <li> Constitutional Foundations</li>
+                </ul>
+              </li>
+
+
+
+              <li>Fundamental law of Nepal
+                <ul type="circle">
+                  <li>Independent judiciary</li>
+                    <li>Rule of law</li>
+                   <li>National Identity</li>
+                </ul>
+              </li>
+
+              <li>Independent, sovereign state
+                <ul type="circle">
+                  <li>Secular, inclusive, democratic</li>
+                    <li>Socialism-oriented republic</li>
+                   <li> Citizenship Rights</li>
+                </ul>
+              </li>
+
+
+              <li>Right to obtain citizenship
+                <ul type="circle">
+                  <li>Single federal citizenship</li>
+                    <li>Language and Diversity</li>
+                </ul>
+              </li>
+
+              <li>Nepali as official language
+                <ul type="circle">
+                  <li>Recognition of mother tongues</li>
+                    <li>Language Commission</li>
+                </ul>
+              </li>
+
+              <li>Guaranteed fundamental rights
+                <ul type="circle">
+                  <li>Affirmative action for protection</li>
+                    <li>Rights of various groups</li>
+                    <li>Duties of Citizens:</li>
+                </ul>
+              </li>
+
+              <li>Safeguarding nationality
+                <ul type="circle">
+                  <li>Loyalty to the nation</li>
+                    <li>Abide by the Constitution</li>
+                    <li>Political Objectives</li>
+                </ul>
+              </li>
+
+              <li>Cooperative federalism
+                <ul type="circle">
+                  <li>Proportional participation</li>
+                  <li>Local autonomy, decentralization</li>
+                    <li>Social and Economic Goals</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+
+  
+</section>
+  
+
+  <section>
+    <h1 style="font-size: 42px;"> Our Members</h1>
+      <div class="Team_members">
+        <div class="members">
+          <img src="{{ url_for('static', filename='image/anuj.jpg') }}" alt="">
+          <p>Anuj Nanda Gorkhali</p>
+        </div>
+        <div class="members">
+          <img src="{{ url_for('static', filename='image/pratik.jpg') }}" alt="">
+            <p>Pratik Dhakal</p>
+        </div>
+        <div class="members">
+          <img src="{{ url_for('static', filename='image/luis.jpg') }}" alt="">
+          <p>Luis Shrestha</p>
+        </div>
+        <div class="members">
+          <img src="{{ url_for('static', filename='image/anuska.jpg') }}" alt="">
+          <p>Anuska shahi</p>
+        </div>
+      </div>
+  </section>
+
+  <section id="disclaimer"><i>
+    <p id="disc">
+      Disclaimer: this NepLexBot is trained to help you in our legal queries but it is important to understand about the limitation of the chatbot.
+      This free chatbot answer the question about the nepal consititution based on the legal constitution pdf.
+      This NepLexBot has the high response time which take upto 2-4 min. This NepLexBot may sometimes give inaccurate answers.
+    </p>
+  </i>
+  </section>
+ 
+  <footer>
+    <div class="footer">
+   
+    <div class="row">
+    <ul>
+      <li><a href=""><img src="{{ url_for('static', filename='image/logo.png') }}" alt="" height="120px" width="160px" style="margin-top:10px;"></a></li>
+
+      <li id="contact-us">Contact us
+        <div id="socials">
+          <i class="fa fa-envelope">
+            <p>neplexbot2024@gmail.com</p>
+          </i>
+
+          <i class="fa fa-phone">
+            <p>01-4390786</p>
+          </i>
+        </div>
+      </li>
+      </ul>
+    </div>
+    
+    <div class="row">
+    NepLexBot Copyright © 2024 NepLexBot - All rights reserved
+    </div>
+    </div>
+    </footer>
+
+  
+</body>
+<script>
+  function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
+</html>
